@@ -6,15 +6,20 @@ grammar ArrayInit;
 sltl : '<' NAME '>' sltl
      | '(' sltl ')'
      | unaryOp sltl
-     | sltl 'U' sltl
+     | sltl binaryOp sltl
      | NAME
      | TRUE
      ;
 
-unaryOp : 'G'
-      | 'F'
-      | '~'
+unaryOp : GLOBAL
+      | FUTURE
+      | NEG
       ;
+
+binaryOp : UNTIL
+    | AND
+    | OR
+    ;
 
 /** A rule called init that matches comma-separated values between {...}. */
 init  : '{' value (',' value)* '}' ;  // must match at least one value
@@ -24,8 +29,14 @@ value : init
       | INT
       ;
 
-TRUE : 'true';
+TRUE    : 'true';
+AND     : 'and';
+OR      : 'or';
 // parser rules start with lowercase letters, lexer rules with uppercase
-NAME : [a-z_]+;
-INT :   [0-9]+ ;             // Define token INT as one or more digits
-WS  :   [ \t\r\n]+ -> skip ; // Define whitespace rule, toss it out
+GLOBAL  : 'G' ;
+UNTIL   : 'U' ;
+NEG     : '~';
+FUTURE  : 'F' ;
+NAME    : [a-z_A-Z]+;
+INT     : [0-9]+ ;             // Define token INT as one or more digits
+WS      : [ \t\r\n]+ -> skip ; // Define whitespace rule, toss it out
