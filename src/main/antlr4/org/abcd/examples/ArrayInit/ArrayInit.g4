@@ -3,8 +3,7 @@
  */
 grammar ArrayInit;
 
-sltl : '<' NAME '>' sltl
-     | '(' sltl ')'
+sltl : '(' sltl ')'
      | unaryOp sltl
      | sltl binaryOp sltl
      | NAME
@@ -14,6 +13,7 @@ sltl : '<' NAME '>' sltl
 unaryOp : GLOBAL
       | FUTURE
       | NEG
+      | '<' NAME '>'
       ;
 
 binaryOp : UNTIL

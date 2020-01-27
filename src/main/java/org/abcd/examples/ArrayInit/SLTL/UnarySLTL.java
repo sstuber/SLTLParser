@@ -1,18 +1,31 @@
 package org.abcd.examples.ArrayInit.SLTL;
 
-import org.abcd.examples.ArrayInit.BinarySLTLFold;
-import org.abcd.examples.ArrayInit.UnarySLTLFold;
-
 public class UnarySLTL extends SLTL {
-	SLTLUnaryOp op;
-	SLTL mid;
+	public UnarySLTL(SLTLData data, UnarySLTLOp op, SLTL right) {
+		super(data);
+		this.op = op;
+		this.right = right;
+	}
 
+	public UnarySLTL(String name, UnarySLTLOp op, SLTL right) {
+		super(name);
+		this.op = op;
+		this.right = right;
+	}
+
+	public UnarySLTL(UnarySLTLOp op, SLTL right) {
+		this.op = op;
+		this.right = right;
+	}
+
+	UnarySLTLOp op;
+	SLTL right;
 
 	@Override
-	<T> T Fold(BinarySLTLFold<T> binarySLTLFold, UnarySLTLFold<T> unarySLTLFold) {
+	<T> T Fold(BinarySLTLFold<T> binarySLTLFold, UnarySLTLFold<T> unarySLTLFold, NoopSLTLFold<T> noopSLTLFold) {
 
-		T midFold = mid.Fold(binarySLTLFold, unarySLTLFold);
+		T rightFold = right.Fold(binarySLTLFold, unarySLTLFold, noopSLTLFold);
 
-		return unarySLTLFold.Fold(midFold, op);
+		return unarySLTLFold.Fold(rightFold, op, data);
 	}
 }

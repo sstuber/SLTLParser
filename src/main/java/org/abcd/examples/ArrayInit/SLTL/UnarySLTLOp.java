@@ -1,8 +1,9 @@
 package org.abcd.examples.ArrayInit.SLTL;
 
-public enum SLTLUnaryOp {
+public enum UnarySLTLOp {
 	Global,
 	Neg,
 	Future,
-	Bracket
+	Bracket,
+	Next
 }
