@@ -1,4 +1,7 @@
-package org.abcd.examples.ArrayInit;
+package org.abcd.examples.ArrayInit.SLTL;
+
+import org.abcd.examples.ArrayInit.BinarySLTLFold;
+import org.abcd.examples.ArrayInit.UnarySLTLFold;
 
 public class BinarySLTL extends SLTL{
 	SLTLBinaryOp op;

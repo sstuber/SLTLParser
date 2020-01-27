@@ -1,4 +1,4 @@
-package org.abcd.examples.ArrayInit;
+package org.abcd.examples.ArrayInit.SLTL;
 
 public enum SLTLUnaryOp {
 	Global,
